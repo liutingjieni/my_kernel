@@ -113,11 +113,14 @@ void schedule()
     thread_tag = list_pop(&thread_ready_list);
     struct task_struct *next = elem2entry(struct task_struct, general_tag, thread_tag);
     next->status = TASK_RUNNING;
-    process_activate(next);
+    //process_activate(next);
     //put_int(list_len(&thread_ready_list));
     //put_int(next);
-    //put_str("\n");
+    //put_str("thread_switch ");
+    //put_int(cur);
+    //put_int(next);
     switch_to(cur, next);
+    //put_str("thread_switch ");
 }
 
 void thread_init()

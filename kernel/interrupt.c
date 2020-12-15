@@ -82,7 +82,7 @@ static void general_intr_handler(uint8_t vec_nr)
         return;
     }
 
-    //put_str("!!!!!!!! exction message begin !!!!!!!!!!!");
+    put_str("!!!!!!!! exction message begin !!!!!!!!!!!");
     put_int(vec_nr);
    // set_cursor(0);
    // int cursor_pos = 0;

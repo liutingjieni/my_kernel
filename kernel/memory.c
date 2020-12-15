@@ -137,8 +137,6 @@ void *malloc_page(enum pool_flags pf, uint32_t pg_cnt)
         return NULL;
     }
     uint32_t vaddr = (uint32_t)vaddr_start, cnt = pg_cnt;
-    put_int(vaddr);
-    put_str("\n");
     struct pool* mem_pool = pf & PF_KERNEL ? &kernel_pool : &user_pool;
 
     while (cnt-- > 0) {

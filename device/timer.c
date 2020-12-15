@@ -41,7 +41,7 @@ static void intr_timer_handler(void)
 //    put_int(intr_disable());
     //put_str("\n");
     ASSERT(cur_thread->stack_magic == 0x19870916);
- //   put_int(cur_thread);
+    //put_int(cur_thread);
     //put_int(ticks);
     //put_int(cur_thread->ticks);
     cur_thread->elapsed_ticks++;

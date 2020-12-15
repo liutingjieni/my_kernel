@@ -30,8 +30,8 @@ int main(void)
     init_all();
     put_str("l am kernel\n");
     //ASSERT(1==2);
-    thread_start("k_thread_a", 31, k_thread_a, "argA ");
-    thread_start("k_thread_b", 8, k_thread_b, "argB ");
+    //thread_start("k_thread_a", 31, k_thread_a, "argA ");
+    //thread_start("k_thread_b", 8, k_thread_b, "argB ");
     //put_int(u_prog_a);
     process_execute(u_prog_a, "user_prog_a");
     process_execute(u_prog_b, "user_prog_b");
