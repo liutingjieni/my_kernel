@@ -34,7 +34,7 @@ gdt_ptr dw GDT_LIMIT
         dd GDT_BASE
 
 ;人工对齐
-ards_buf times 241 db 0
+ards_buf times 238 db 0
 ards_nr dw 0
 
 

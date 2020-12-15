@@ -9,7 +9,7 @@
 #define _PROCESS_H
 #include "tss.h"
 
-#define USER_VADDR_START 0x804800
+#define USER_VADDR_START 0x8048000
 #define USER_STACK3_VADDR (0xc0000000 - 0x1000)
 #define default_prio 310
 void process_activate(struct task_struct *p_thread);

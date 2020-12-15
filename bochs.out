@@ -32,37 +32,37 @@
 00000000000i[     ]   SB16 support: yes
 00000000000i[     ]   USB support: yes
 00000000000i[     ]   VGA extension support: vbe cirrus
-00000000000i[MEM0 ] allocated memory at 0x7f56126c0010. after alignment, vector=0x7f56126c1000
+00000000000i[MEM0 ] allocated memory at 0x7f9a3c8e2010. after alignment, vector=0x7f9a3c8e3000
 00000000000i[MEM0 ] 32.00MB
 00000000000i[MEM0 ] mem block size = 0x00100000, blocks=32
 00000000000i[MEM0 ] rom at 0xfffe0000/131072 ('/usr/share/bochs/BIOS-bochs-latest')
-00000000000i[     ] lt_dlhandle is 0x38deb20
+00000000000i[     ] lt_dlhandle is 0x3a50b20
 00000000000i[PLGIN] loaded plugin libbx_hdimage.so
-00000000000i[     ] lt_dlhandle is 0x38df4b0
+00000000000i[     ] lt_dlhandle is 0x3a514b0
 00000000000i[PLGIN] loaded plugin libbx_pci.so
-00000000000i[     ] lt_dlhandle is 0x38e0030
+00000000000i[     ] lt_dlhandle is 0x3a52030
 00000000000i[PLGIN] loaded plugin libbx_pci2isa.so
-00000000000i[     ] lt_dlhandle is 0x38e0a40
+00000000000i[     ] lt_dlhandle is 0x3a52a40
 00000000000i[PLGIN] loaded plugin libbx_acpi.so
-00000000000i[     ] lt_dlhandle is 0x38e1440
+00000000000i[     ] lt_dlhandle is 0x3a53440
 00000000000i[PLGIN] loaded plugin libbx_cmos.so
-00000000000i[     ] lt_dlhandle is 0x38e1d80
+00000000000i[     ] lt_dlhandle is 0x3a53d80
 00000000000i[PLGIN] loaded plugin libbx_dma.so
-00000000000i[     ] lt_dlhandle is 0x38e2810
+00000000000i[     ] lt_dlhandle is 0x3a54810
 00000000000i[PLGIN] loaded plugin libbx_pic.so
-00000000000i[     ] lt_dlhandle is 0x38e30d0
+00000000000i[     ] lt_dlhandle is 0x3a550d0
 00000000000i[PLGIN] loaded plugin libbx_pit.so
-00000000000i[     ] lt_dlhandle is 0x38e3b00
+00000000000i[     ] lt_dlhandle is 0x3a55b00
 00000000000i[PLGIN] loaded plugin libbx_floppy.so
-00000000000i[     ] lt_dlhandle is 0x38e46f0
+00000000000i[     ] lt_dlhandle is 0x3a566f0
 00000000000i[PLGIN] loaded plugin libbx_vga.so
-00000000000i[     ] lt_dlhandle is 0x38e4e80
+00000000000i[     ] lt_dlhandle is 0x3a56e80
 00000000000i[PLGIN] loaded plugin libbx_ioapic.so
-00000000000i[     ] lt_dlhandle is 0x38e58c0
+00000000000i[     ] lt_dlhandle is 0x3a578c0
 00000000000i[PLGIN] loaded plugin libbx_keyboard.so
-00000000000i[     ] lt_dlhandle is 0x38e6160
+00000000000i[     ] lt_dlhandle is 0x3a58160
 00000000000i[PLGIN] loaded plugin libbx_harddrv.so
-00000000000i[     ] lt_dlhandle is 0x38f8250
+00000000000i[     ] lt_dlhandle is 0x3a6a250
 00000000000i[PLGIN] loaded plugin libbx_pci_ide.so
 00000000000i[PLGIN] init_dev of 'pci' plugin device by virtual method
 00000000000i[PCI  ] 440FX Host bridge present at device 0, function 0
@@ -70,7 +70,7 @@
 00000000000i[PCI  ] PIIX3 PCI-to-ISA bridge present at device 1, function 0
 00000000000i[PLGIN] init_dev of 'cmos' plugin device by virtual method
 00000000000i[CMOS ] Using local time for initial clock
-00000000000i[CMOS ] Setting initial clock to: Fri Nov 27 21:39:33 2020 (time0=1606484373)
+00000000000i[CMOS ] Setting initial clock to: Tue Dec 15 18:15:12 2020 (time0=1608027312)
 00000000000i[PLGIN] init_dev of 'dma' plugin device by virtual method
 00000000000i[DMA  ] channel 4 used by cascade
 00000000000i[PLGIN] init_dev of 'pic' plugin device by virtual method
@@ -27873,80 +27873,80 @@
 00018039037e[HD   ] IO read(0x01f0) with drq == 0: last command was 00h
 00018039041e[HD   ] IO read(0x01f0) with drq == 0: last command was 00h
 00018039049i[MEM0 ] allocate_block: block=0x1 used 0x3 of 0x20
-00018128545i[MEM0 ] allocate_block: block=0x2 used 0x4 of 0x20
-00022670782i[CPU0 ] CPU is in protected mode (active)
-00022670782i[CPU0 ] CS.mode = 32 bit
-00022670782i[CPU0 ] SS.mode = 32 bit
-00022670782i[CPU0 ] EFER   = 0x00000000
-00022670782i[CPU0 ] | EAX=00000000  EBX=c0008000  ECX=00000000  EDX=c0101000
-00022670782i[CPU0 ] | ESP=c0100e28  EBP=c0100e40  ESI=00000000  EDI=00000000
-00022670782i[CPU0 ] | IOPL=0 id vip vif ac vm RF nt of df IF tf SF zf AF PF CF
-00022670782i[CPU0 ] | SEG sltr(index|ti|rpl)     base    limit G D
-00022670782i[CPU0 ] |  CS:0008( 0001| 0|  0) 00000000 ffffffff 1 1
-00022670782i[CPU0 ] |  DS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
-00022670782i[CPU0 ] |  SS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
-00022670782i[CPU0 ] |  ES:0010( 0002| 0|  0) 00000000 ffffffff 1 1
-00022670782i[CPU0 ] |  FS:0000( 0000| 0|  0) 00000000 00000000 0 0
-00022670782i[CPU0 ] |  GS:0018( 0003| 0|  0) c00b8000 08ffffff 1 1
-00022670782i[CPU0 ] | EIP=c0002110 (c0002110)
-00022670782i[CPU0 ] | CR0=0xe0000011 CR2=0x00008240
-00022670782i[CPU0 ] | CR3=0x00219000 CR4=0x00000000
-00022670782e[CPU0 ] exception(): 3rd (14) exception with no resolution, shutdown status is 00h, resetting
-00022670782i[SYS  ] bx_pc_system_c::Reset(HARDWARE) called
-00022670782i[CPU0 ] cpu hardware reset
-00022670782i[APIC0] allocate APIC id=0 (MMIO enabled) to 0x00000000fee00000
-00022670782i[CPU0 ] CPUID[0x00000000]: 00000002 756e6547 6c65746e 49656e69
-00022670782i[CPU0 ] CPUID[0x00000001]: 00000633 00010800 00002028 1fcbfbff
-00022670782i[CPU0 ] CPUID[0x00000002]: 00410601 00000000 00000000 00000000
-00022670782i[CPU0 ] CPUID[0x80000000]: 80000008 00000000 00000000 00000000
-00022670782i[CPU0 ] CPUID[0x80000001]: 00000000 00000000 00000101 2a100000
-00022670782i[CPU0 ] CPUID[0x80000002]: 20202020 20202020 20202020 6e492020
-00022670782i[CPU0 ] CPUID[0x80000003]: 286c6574 50202952 69746e65 52286d75
-00022670782i[CPU0 ] CPUID[0x80000004]: 20342029 20555043 20202020 00202020
-00022670782i[CPU0 ] CPUID[0x80000005]: 01ff01ff 01ff01ff 40020140 40020140
-00022670782i[CPU0 ] CPUID[0x80000006]: 00000000 42004200 02008140 00000000
-00022670782i[CPU0 ] CPUID[0x80000007]: 00000000 00000000 00000000 00000000
-00022670782i[CPU0 ] CPUID[0x80000008]: 00003028 00000000 00000000 00000000
-00022670782i[PLGIN] reset of 'pci' plugin device by virtual method
-00022670782i[PLGIN] reset of 'pci2isa' plugin device by virtual method
-00022670782i[PLGIN] reset of 'cmos' plugin device by virtual method
-00022670782i[PLGIN] reset of 'dma' plugin device by virtual method
-00022670782i[PLGIN] reset of 'pic' plugin device by virtual method
-00022670782i[PLGIN] reset of 'pit' plugin device by virtual method
-00022670782i[PLGIN] reset of 'floppy' plugin device by virtual method
-00022670782i[PLGIN] reset of 'vga' plugin device by virtual method
-00022670782i[PLGIN] reset of 'acpi' plugin device by virtual method
-00022670782i[PLGIN] reset of 'ioapic' plugin device by virtual method
-00022670782i[PLGIN] reset of 'keyboard' plugin device by virtual method
-00022670782i[PLGIN] reset of 'harddrv' plugin device by virtual method
-00022670782i[PLGIN] reset of 'pci_ide' plugin device by virtual method
-00022670782i[PLGIN] reset of 'unmapped' plugin device by virtual method
-00022670782i[PLGIN] reset of 'biosdev' plugin device by virtual method
-00022670782i[PLGIN] reset of 'speaker' plugin device by virtual method
-00022670782i[PLGIN] reset of 'extfpuirq' plugin device by virtual method
-00022670782i[PLGIN] reset of 'parallel' plugin device by virtual method
-00022670782i[PLGIN] reset of 'serial' plugin device by virtual method
-00022670782i[PLGIN] reset of 'gameport' plugin device by virtual method
-00022670782i[PLGIN] reset of 'iodebug' plugin device by virtual method
-00022670783i[XGUI ] Mouse capture off
-00022670783i[     ] dbg: Quit
-00022670783i[CPU0 ] CPU is in real mode (active)
-00022670783i[CPU0 ] CS.mode = 16 bit
-00022670783i[CPU0 ] SS.mode = 16 bit
-00022670783i[CPU0 ] EFER   = 0x00000000
-00022670783i[CPU0 ] | EAX=00000000  EBX=00000000  ECX=00000000  EDX=00000000
-00022670783i[CPU0 ] | ESP=00000000  EBP=00000000  ESI=00000000  EDI=00000000
-00022670783i[CPU0 ] | IOPL=0 id vip vif ac vm rf nt of df if tf sf zf af pf cf
-00022670783i[CPU0 ] | SEG sltr(index|ti|rpl)     base    limit G D
-00022670783i[CPU0 ] |  CS:f000( 1e00| 0|  0) ffff0000 0000ffff 0 0
-00022670783i[CPU0 ] |  DS:0000( 0000| 0|  0) 00000000 0000ffff 0 0
-00022670783i[CPU0 ] |  SS:0000( 0000| 0|  0) 00000000 0000ffff 0 0
-00022670783i[CPU0 ] |  ES:0000( 0000| 0|  0) 00000000 0000ffff 0 0
-00022670783i[CPU0 ] |  FS:0000( 0000| 0|  0) 00000000 0000ffff 0 0
-00022670783i[CPU0 ] |  GS:0000( 0000| 0|  0) 00000000 0000ffff 0 0
-00022670783i[CPU0 ] | EIP=0000fff0 (0000fff0)
-00022670783i[CPU0 ] | CR0=0x60000010 CR2=0x00000000
-00022670783i[CPU0 ] | CR3=0x00000000 CR4=0x00000000
-00022670783i[CMOS ] Last time is 1606484378 (Fri Nov 27 21:39:38 2020)
-00022670783i[XGUI ] Exit
-00022670783i[CTRL ] quit_sim called with exit code 0
+00018119731i[MEM0 ] allocate_block: block=0x2 used 0x4 of 0x20
+00022615822i[CPU0 ] CPU is in protected mode (active)
+00022615822i[CPU0 ] CS.mode = 32 bit
+00022615822i[CPU0 ] SS.mode = 32 bit
+00022615822i[CPU0 ] EFER   = 0x00000000
+00022615822i[CPU0 ] | EAX=00000000  EBX=c0008000  ECX=00000000  EDX=c0103000
+00022615822i[CPU0 ] | ESP=c0102e28  EBP=c0102e40  ESI=00000000  EDI=00000000
+00022615822i[CPU0 ] | IOPL=0 id vip vif ac vm RF nt of df IF tf SF zf AF PF CF
+00022615822i[CPU0 ] | SEG sltr(index|ti|rpl)     base    limit G D
+00022615822i[CPU0 ] |  CS:0008( 0001| 0|  0) 00000000 ffffffff 1 1
+00022615822i[CPU0 ] |  DS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+00022615822i[CPU0 ] |  SS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+00022615822i[CPU0 ] |  ES:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+00022615822i[CPU0 ] |  FS:0000( 0000| 0|  0) 00000000 00000000 0 0
+00022615822i[CPU0 ] |  GS:0018( 0003| 0|  0) c00b8000 08ffffff 1 1
+00022615822i[CPU0 ] | EIP=c000214b (c000214b)
+00022615822i[CPU0 ] | CR0=0xe0000011 CR2=0x00008240
+00022615822i[CPU0 ] | CR3=0x0021a000 CR4=0x00000000
+00022615822e[CPU0 ] exception(): 3rd (14) exception with no resolution, shutdown status is 00h, resetting
+00022615822i[SYS  ] bx_pc_system_c::Reset(HARDWARE) called
+00022615822i[CPU0 ] cpu hardware reset
+00022615822i[APIC0] allocate APIC id=0 (MMIO enabled) to 0x00000000fee00000
+00022615822i[CPU0 ] CPUID[0x00000000]: 00000002 756e6547 6c65746e 49656e69
+00022615822i[CPU0 ] CPUID[0x00000001]: 00000633 00010800 00002028 1fcbfbff
+00022615822i[CPU0 ] CPUID[0x00000002]: 00410601 00000000 00000000 00000000
+00022615822i[CPU0 ] CPUID[0x80000000]: 80000008 00000000 00000000 00000000
+00022615822i[CPU0 ] CPUID[0x80000001]: 00000000 00000000 00000101 2a100000
+00022615822i[CPU0 ] CPUID[0x80000002]: 20202020 20202020 20202020 6e492020
+00022615822i[CPU0 ] CPUID[0x80000003]: 286c6574 50202952 69746e65 52286d75
+00022615822i[CPU0 ] CPUID[0x80000004]: 20342029 20555043 20202020 00202020
+00022615822i[CPU0 ] CPUID[0x80000005]: 01ff01ff 01ff01ff 40020140 40020140
+00022615822i[CPU0 ] CPUID[0x80000006]: 00000000 42004200 02008140 00000000
+00022615822i[CPU0 ] CPUID[0x80000007]: 00000000 00000000 00000000 00000000
+00022615822i[CPU0 ] CPUID[0x80000008]: 00003028 00000000 00000000 00000000
+00022615822i[PLGIN] reset of 'pci' plugin device by virtual method
+00022615822i[PLGIN] reset of 'pci2isa' plugin device by virtual method
+00022615822i[PLGIN] reset of 'cmos' plugin device by virtual method
+00022615822i[PLGIN] reset of 'dma' plugin device by virtual method
+00022615822i[PLGIN] reset of 'pic' plugin device by virtual method
+00022615822i[PLGIN] reset of 'pit' plugin device by virtual method
+00022615822i[PLGIN] reset of 'floppy' plugin device by virtual method
+00022615822i[PLGIN] reset of 'vga' plugin device by virtual method
+00022615822i[PLGIN] reset of 'acpi' plugin device by virtual method
+00022615822i[PLGIN] reset of 'ioapic' plugin device by virtual method
+00022615822i[PLGIN] reset of 'keyboard' plugin device by virtual method
+00022615822i[PLGIN] reset of 'harddrv' plugin device by virtual method
+00022615822i[PLGIN] reset of 'pci_ide' plugin device by virtual method
+00022615822i[PLGIN] reset of 'unmapped' plugin device by virtual method
+00022615822i[PLGIN] reset of 'biosdev' plugin device by virtual method
+00022615822i[PLGIN] reset of 'speaker' plugin device by virtual method
+00022615822i[PLGIN] reset of 'extfpuirq' plugin device by virtual method
+00022615822i[PLGIN] reset of 'parallel' plugin device by virtual method
+00022615822i[PLGIN] reset of 'serial' plugin device by virtual method
+00022615822i[PLGIN] reset of 'gameport' plugin device by virtual method
+00022615822i[PLGIN] reset of 'iodebug' plugin device by virtual method
+00022615823i[XGUI ] Mouse capture off
+00022615823i[     ] dbg: Quit
+00022615823i[CPU0 ] CPU is in real mode (active)
+00022615823i[CPU0 ] CS.mode = 16 bit
+00022615823i[CPU0 ] SS.mode = 16 bit
+00022615823i[CPU0 ] EFER   = 0x00000000
+00022615823i[CPU0 ] | EAX=00000000  EBX=00000000  ECX=00000000  EDX=00000000
+00022615823i[CPU0 ] | ESP=00000000  EBP=00000000  ESI=00000000  EDI=00000000
+00022615823i[CPU0 ] | IOPL=0 id vip vif ac vm rf nt of df if tf sf zf af pf cf
+00022615823i[CPU0 ] | SEG sltr(index|ti|rpl)     base    limit G D
+00022615823i[CPU0 ] |  CS:f000( 1e00| 0|  0) ffff0000 0000ffff 0 0
+00022615823i[CPU0 ] |  DS:0000( 0000| 0|  0) 00000000 0000ffff 0 0
+00022615823i[CPU0 ] |  SS:0000( 0000| 0|  0) 00000000 0000ffff 0 0
+00022615823i[CPU0 ] |  ES:0000( 0000| 0|  0) 00000000 0000ffff 0 0
+00022615823i[CPU0 ] |  FS:0000( 0000| 0|  0) 00000000 0000ffff 0 0
+00022615823i[CPU0 ] |  GS:0000( 0000| 0|  0) 00000000 0000ffff 0 0
+00022615823i[CPU0 ] | EIP=0000fff0 (0000fff0)
+00022615823i[CPU0 ] | CR0=0x60000010 CR2=0x00000000
+00022615823i[CPU0 ] | CR3=0x00000000 CR4=0x00000000
+00022615823i[CMOS ] Last time is 1608027317 (Tue Dec 15 18:15:17 2020)
+00022615823i[XGUI ] Exit
+00022615823i[CTRL ] quit_sim called with exit code 0
