@@ -34,7 +34,7 @@ void start_process(void *filename_)
     //USER_STACK3_VADDR = 0xc0000000 - 0x1000, 是用户栈空间的下边界 + PG_SIZE是栈的上边界， 即栈底
     proc_stack->esp = (void *)((uint32_t)get_a_page(PF_USER, USER_STACK3_VADDR) + PG_SIZE);
     proc_stack->ss = SELECTOR_U_DATA;
-    console_put_str("start_proess start\n");
+    console_put_str("start_proess\n");
     asm volatile("movl %0, %%esp; jmp intr_exit": : "g"(proc_stack): "memory");
     console_put_str("start_proess end\n");
 }
@@ -44,8 +44,12 @@ void page_dir_activate(struct task_struct *p_thread)
 {
     uint32_t pagedir_phy_addr = 0x100000;
     if (p_thread->pgdir != NULL) {
+        put_str("pthread_dir_activate\n");
         pagedir_phy_addr = addr_v2p((uint32_t)p_thread->pgdir);
+        //put_int(pagedir_phy_addr);
+        //pagedir_phy_addr = ((0xfffff000) + (((uint32_t)p_thread->pgdir & 0xffc00000) >> 22) * 4);
     }
+    put_int(pagedir_phy_addr);
     asm volatile("movl %0, %%cr3" : : "r"(pagedir_phy_addr) : "memory");
 }
 
@@ -63,7 +67,10 @@ void process_activate(struct task_struct *p_thread)
 uint32_t *create_page_dir(void)
 {
     //分配物理地址， 虚拟地址， 并完成映射
+    put_str("create_page_dir\n");
     uint32_t *page_dir_vaddr = get_kernel_pages(1);
+    put_str("page_dir_vaddr");
+    put_int((uint32_t)page_dir_vaddr);
     if (page_dir_vaddr == NULL) {
         console_put_str("create_page_dir: get_kernel_page failed!");
         return NULL;
@@ -98,7 +105,7 @@ void process_execute(void *filename, char *name)
     init_thread(thread, name, default_prio);
     create_user_vaddr_bitmap(thread);
     thread_create(thread, start_process, filename);
-    //thread->pgdir = create_page_dir();
+    thread->pgdir = create_page_dir();
 
     enum intr_status old_status = intr_disable();
     ASSERT(!elem_find(&thread_ready_list,  &thread->general_tag));

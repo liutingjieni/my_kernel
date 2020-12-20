@@ -28,7 +28,8 @@ struct task_struct *running_thread()
 static void kernel_thread(thread_func *function, void *func_arg)
 {
     struct task_struct *t = running_thread();
-    intr_enable();
+    put_str("lalala\n");
+    //intr_enable();
     function(func_arg);
 }
 
@@ -113,7 +114,7 @@ void schedule()
     thread_tag = list_pop(&thread_ready_list);
     struct task_struct *next = elem2entry(struct task_struct, general_tag, thread_tag);
     next->status = TASK_RUNNING;
-    //process_activate(next);
+    process_activate(next);
     //put_int(list_len(&thread_ready_list));
     //put_int(next);
     //put_str("thread_switch ");
