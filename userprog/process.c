@@ -98,7 +98,7 @@ void process_execute(void *filename, char *name)
     init_thread(thread, name, default_prio);
     create_user_vaddr_bitmap(thread);
     thread_create(thread, start_process, filename);
-    //thread->pgdir = create_page_dir();
+    thread->pgdir = create_page_dir();
 
     enum intr_status old_status = intr_disable();
     ASSERT(!elem_find(&thread_ready_list,  &thread->general_tag));
