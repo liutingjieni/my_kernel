@@ -68,18 +68,14 @@ void tss_init()
     memset(&tss, 0, tss_size);
     tss.ss0 = SELECTOR_K_STACK;
     tss.io_base = tss_size;
-    put_str("tss_init and ltr done\n");
 
     //tss放在gdt描述表中第四个位置
-    *((struct gdt_desc *)0xc0000923) = make_gdt_desc((uint32_t *)&tss, tss_size - 1, TSS_ATTR_LOW, TSS_ATTR_HIGH);
-    put_str("tss_init and ltr done\n");
+    *((struct gdt_desc *)0xc0000920) = make_gdt_desc((uint32_t *)&tss, tss_size - 1, TSS_ATTR_LOW, TSS_ATTR_HIGH);
     //gdt中添加DPL为3的代码段和数据段
-    *((struct gdt_desc *)0xc000092b) = make_gdt_desc((uint32_t *)0, 0xfffff, GDT_CODE_ATTR_LOW_DPL3, GDT_ATTR_HIGH);
-    put_str("tss_init and ltr done\n");
-    *((struct gdt_desc *)0xc0000933) = make_gdt_desc((uint32_t *)0, 0xfffff, GDT_DATA_ATTR_LOW_DPL3, GDT_ATTR_HIGH);
-    put_str("tss_init and ltr done\n");
+    *((struct gdt_desc *)0xc0000928) = make_gdt_desc((uint32_t *)0, 0xfffff, GDT_CODE_ATTR_LOW_DPL3, GDT_ATTR_HIGH);
+    *((struct gdt_desc *)0xc0000930) = make_gdt_desc((uint32_t *)0, 0xfffff, GDT_DATA_ATTR_LOW_DPL3, GDT_ATTR_HIGH);
     
-    uint64_t gdt_operand = ((8 * 7 - 1) | ((uint64_t)(uint32_t)0xc0000903 << 16));
+    uint64_t gdt_operand = ((8 * 7 - 1) | ((uint64_t)(uint32_t)0xc0000900 << 16));
     asm volatile ("lgdt %0" : : "m"(gdt_operand));
     asm volatile ("ltr %w0" : : "r"(SELECTOR_TSS));
     put_str("tss_init and ltr done\n");

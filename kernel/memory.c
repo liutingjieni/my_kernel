@@ -273,7 +273,7 @@ static void mem_pool_init(uint32_t all_mem)
 void mem_init()
 {
     put_str("mem_init start\n");
-    uint32_t mem_bytes_total = (*(uint32_t *)(0xb03));
+    uint32_t mem_bytes_total = (*(uint32_t *)(0xb00));
     put_int(mem_bytes_total);
     mem_pool_init(mem_bytes_total);
     put_str("mem_init done\n");

@@ -2,7 +2,7 @@
 
 section loader vstart=LOADER_BASE_ADDR
 LOADER_STACK_TOP equ LOADER_BASE_ADDR
-jmp loader_start
+;jmp loader_start
 
 ;构建段描述符, 低32位平坦模式段基址0, 段界限fffff, 高32位 
 GDT_BASE: dd 0x00000000
@@ -34,7 +34,7 @@ gdt_ptr dw GDT_LIMIT
         dd GDT_BASE
 
 ;人工对齐
-ards_buf times 238 db 0
+ards_buf times 244 db 0
 ards_nr dw 0
 
 
