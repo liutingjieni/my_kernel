@@ -20,3 +20,6 @@
 7. 段错误 未初始化thread_init()
 8. make_main_threadassert(elem_find(&thread_all_list, &main_thread->all_list_tag))
 9. 时钟中断号为20, 但是未初始化20端口的中断处理函数, 导致中断号是0xe或者0x6, 然后去处理, 猜想是未处理正确端口号, 导致中断未处理, 一直触发, 无法回到正常的执行流
+
+10. 由特权级0切换到特权级三发生错误
+
