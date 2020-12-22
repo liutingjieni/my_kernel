@@ -94,14 +94,14 @@ static void general_intr_handler(uint8_t vec_nr)
    // set_cursor(0);
    // put_str("!!!!!!!! exction message begin !!!!!!!!!!!\n");
    // set_cursor(88);
-   // put_str(intr_name[vec_nr]);
-   // if (vec_nr == 14) {
-   //     int page_fault_vaddr = 0;
-   //     asm ("movl %%cr2, %0" : "=r"(page_fault_vaddr));
+     put_str(intr_name[vec_nr]);
+    if (vec_nr == 14) {
+        int page_fault_vaddr = 0;
+        asm ("movl %%cr2, %0" : "=r"(page_fault_vaddr));
 
-   //     put_str("\n page fault addr is ");
-   //     put_int(page_fault_vaddr);
-   // }
+        put_str("\n page fault addr is ");
+        put_int(page_fault_vaddr);
+    }
    // put_str("\n!!!!!!!! exction message end !!xx");
     //while(1);
 }
