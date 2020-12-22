@@ -28,11 +28,8 @@ struct task_struct *running_thread()
 static void kernel_thread(thread_func *function, void *func_arg)
 {
     struct task_struct *t = running_thread();
-<<<<<<< HEAD
-=======
     put_str("lalala\n");
->>>>>>> e9d6294f89c5887ec4b72b9642241a972c808e4c
-    //intr_enable();
+    intr_enable();
     function(func_arg);
 }
 

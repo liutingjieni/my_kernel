@@ -141,7 +141,7 @@ void *malloc_page(enum pool_flags pf, uint32_t pg_cnt)
 
     while (cnt-- > 0) {
         void *page_phyaddr = palloc(mem_pool);
-        put_int((uint32_t)page_phyaddr);
+        //put_int((uint32_t)page_phyaddr);
         if (page_phyaddr == NULL) {
             return NULL;
         }

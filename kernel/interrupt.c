@@ -82,7 +82,7 @@ static void general_intr_handler(uint8_t vec_nr)
         return;
     }
 
-    //put_str("!!!!!!!! exction message begin !!!!!!!!!!!");
+    put_str("!!!!!!!! exction message begin !!!!!!!!!!!");
     //put_int(vec_nr);
    // set_cursor(0);
    // int cursor_pos = 0;
@@ -94,20 +94,13 @@ static void general_intr_handler(uint8_t vec_nr)
    // set_cursor(0);
    // put_str("!!!!!!!! exction message begin !!!!!!!!!!!\n");
    // set_cursor(88);
-<<<<<<< HEAD
      put_str(intr_name[vec_nr]);
-=======
-    put_str(intr_name[vec_nr]);
->>>>>>> e9d6294f89c5887ec4b72b9642241a972c808e4c
     if (vec_nr == 14) {
         int page_fault_vaddr = 0;
         asm ("movl %%cr2, %0" : "=r"(page_fault_vaddr));
 
-<<<<<<< HEAD
         put_str("\n page fault addr is ");
         put_int(page_fault_vaddr);
-=======
->>>>>>> e9d6294f89c5887ec4b72b9642241a972c808e4c
     }
    // put_str("\n!!!!!!!! exction message end !!xx");
     //while(1);
@@ -115,7 +108,7 @@ static void general_intr_handler(uint8_t vec_nr)
 
 static void exception_init(void)
 {
-    //put_str("exception_init\n");
+    put_str("exception_init\n");
     int i;
     for (i = 0; i < IDT_DESC_CNT; i++) {
         idt_table[i] = general_intr_handler;

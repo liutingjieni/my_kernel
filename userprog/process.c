@@ -49,7 +49,7 @@ void page_dir_activate(struct task_struct *p_thread)
         //put_int(pagedir_phy_addr);
         //pagedir_phy_addr = ((0xfffff000) + (((uint32_t)p_thread->pgdir & 0xffc00000) >> 22) * 4);
     }
-    put_int(pagedir_phy_addr);
+    //put_int(pagedir_phy_addr);
     asm volatile("movl %0, %%cr3" : : "r"(pagedir_phy_addr) : "memory");
 }
 
@@ -70,7 +70,7 @@ uint32_t *create_page_dir(void)
     put_str("create_page_dir\n");
     uint32_t *page_dir_vaddr = get_kernel_pages(1);
     put_str("page_dir_vaddr");
-    put_int((uint32_t)page_dir_vaddr);
+    //put_int((uint32_t)page_dir_vaddr);
     if (page_dir_vaddr == NULL) {
         console_put_str("create_page_dir: get_kernel_page failed!");
         return NULL;
@@ -101,7 +101,7 @@ void process_execute(void *filename, char *name)
 {
     console_put_str("process_execute start\n");
     struct task_struct *thread = get_kernel_pages(1);
-    put_int(thread);
+    //put_int(thread);
     init_thread(thread, name, default_prio);
     create_user_vaddr_bitmap(thread);
     thread_create(thread, start_process, filename);
