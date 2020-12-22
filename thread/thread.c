@@ -29,7 +29,7 @@ static void kernel_thread(thread_func *function, void *func_arg)
 {
     struct task_struct *t = running_thread();
     put_str("lalala\n");
-    intr_enable();
+    //intr_enable();
     function(func_arg);
 }
 

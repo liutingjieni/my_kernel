@@ -20,8 +20,10 @@ void start_process(void *filename_)
     void *function = filename_;
     //put_int(function);
     struct task_struct *cur = running_thread();
+    put_int(cur);
     cur->self_kstack += sizeof(struct thread_stack);
     struct intr_stack *proc_stack = (struct intr_stack *)cur->self_kstack;
+    put_int(proc_stack);
     proc_stack->edi= proc_stack->esi = proc_stack->ebp = proc_stack->esp_dummy = 0;
 
     proc_stack->ebx = proc_stack->edx = proc_stack->ecx = proc_stack->eax = 0;
