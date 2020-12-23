@@ -8,13 +8,14 @@
 #ifndef _INTERRUPT_H
 #define _INTERRUPT_H
 #include "stdint.h"
-#define IDT_DESC_CNT 0x30
+#define IDT_DESC_CNT 0x81
 
 typedef void *intr_handler;
 //中断门描述符结构体
 struct gate_desc;
 
 extern intr_handler intr_entry_table[IDT_DESC_CNT];
+extern uint32_t syscall_handler(void);
 
 
 //初始化中断描述符

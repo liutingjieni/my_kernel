@@ -5,6 +5,8 @@
 extern idt_table		 ;idt_table是C中注册的中断处理程序数组
 extern put_str
 extern put_int
+extern syscall_table
+
 section .data
 intr_sttr db "interrupt", 0xa, 0
 global intr_entry_table
@@ -105,3 +107,25 @@ VECTOR 0x2c,ZERO	;ps/2鼠标
 VECTOR 0x2d,ZERO	;fpu浮点单元异常
 VECTOR 0x2e,ZERO	;硬盘
 VECTOR 0x2f,ZERO	;保留s
+
+global syscall_handler
+syscall_handler:
+    push 0
+    push ds
+    push es
+    push fs
+    push gs
+    pushad
+
+    push 0x80
+
+    push edx
+    push ecx 
+    push ebx 
+    call [syscall_table + eax * 4]
+    add esp, 12
+
+    mov [esp + 8 * 4], eax
+    jmp intr_exit
+
+

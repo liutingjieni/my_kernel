@@ -16,8 +16,10 @@ gcc -I lib/kernel/ -I lib/ -I kernel/  -c -fno-builtin -o build/bitmap.o lib/ker
 gcc -I lib/kernel/ -I lib/ -I kernel/  -c -fno-builtin -o build/string.o lib/string.c -m32 &&
 gcc -I lib/kernel/ -I lib/ -I kernel/  -I userprog/ -c -fno-builtin -o build/thread.o thread/thread.c -m32 &&
 gcc -I lib/kernel/ -I lib/ -I kernel/ -I thread/  -c -fno-builtin -o build/sync.o thread/sync.c -m32 &&
-gcc -I lib/kernel/ -I lib/ -I thread/ -I device/ -I userprog/ -c -fno-builtin -o build/main.o kernel/main.c -m32 &&
+gcc -I lib/kernel/ -I lib/ -I thread/ -I device/ -I userprog/ -I lib/user -c -fno-builtin -o build/main.o kernel/main.c -m32 &&
 gcc -I kernel/ -I lib/kernel/ -I lib/  -I device/ -c -fno-builtin -o build/debug.o kernel/debug.c -m32 &&
-ld -Ttext 0xc0001500 -e main -o build/kernel.bin -m elf_i386  build/main.o build/print.o build/kernel.o build/init.o build/interrupt.o build/timer.o build/thread.o build/debug.o build/memory.o build/bitmap.o  build/string.o build/switch.o build/list.o build/console.o build/sync.o build/keyboard.o build/ioqueue.o build/tss.o build/process.o&& 
+gcc  -c -fno-builtin -o build/syscall.o lib/user/syscall.c -m32 &&
+gcc -I lib/kernel -I lib/   -I thread/ -I lib/user -I kernel/ -c -fno-builtin -o build/syscall-init.o userprog/syscall-init.c -m32 &&
+ld -Ttext 0xc0001500 -e main -o build/kernel.bin -m elf_i386  build/main.o build/print.o build/kernel.o build/init.o build/interrupt.o build/timer.o build/thread.o build/debug.o build/memory.o build/bitmap.o  build/string.o build/switch.o build/list.o build/console.o build/sync.o build/keyboard.o build/ioqueue.o build/tss.o build/process.o build/syscall.o build/syscall-init.o&& 
 dd if=build/kernel.bin of=~/c.img bs=512 count=200 seek=9 conv=notrunc
 

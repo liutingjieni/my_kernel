@@ -13,6 +13,7 @@
 #include "memory.h"
 //自定义通用函数类型, 他将在很多线程中作为形参类型
 typedef void thread_func(void *);
+typedef int16_t pid_t;
 
 //进程或线程的状态
 enum task_status {
@@ -80,6 +81,7 @@ struct thread_stack {
 //线程或进程的PCB,程序控制块
 struct task_struct {
     uint32_t *self_kstack;
+    pid_t pid;
     enum task_status status;
     char name[16];
     uint8_t priority;

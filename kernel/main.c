@@ -16,25 +16,32 @@
 #include "keyboard.h"
 #include "ioqueue.h"
 #include "process.h"
+#include "syscall.h"
+#include "syscall-init.h"
 void k_thread_a(void *);
 void k_thread_b(void *);
 void u_prog_a(void);
 void u_prog_b(void);
-int test_var_a = 0;
-int test_var_b = 0;
+//int test_var_a = 0;
+//int test_var_b = 0;
 
+int prog_a_pid = 0, prog_b_pid = 0;
 
 int main(void)
 {
     put_str("l am kernel\n");
     init_all();
     //ASSERT(1==2);
-    thread_start("k_thread_a", 31, k_thread_a, "argA ");
-    thread_start("k_thread_b", 31, k_thread_b, "argB ");
     //put_int(u_prog_a);
     process_execute(u_prog_a, "user_prog_a");
     process_execute(u_prog_b, "user_prog_b");
     intr_enable();
+    console_put_str("main_pid: 0x");
+    console_put_int(sys_getpid());
+    console_put_char('\n');
+    
+    thread_start("k_thread_a", 31, k_thread_a, "argA ");
+    thread_start("k_thread_b", 31, k_thread_b, "argB ");
     
     while(1);
     //while(1)
@@ -47,20 +54,35 @@ int main(void)
 
 void k_thread_a(void* arg) {     
    char* para = arg;
-   while(1) {
-      console_put_str(" v_a:0x");
-      console_put_int(test_var_a);
-      console_put_str("\n");
-   }
+   console_put_str("thread_a_pid: 0x");
+   console_put_int(sys_getpid());
+   console_put_char('\n');
+   console_put_str("prog_a_pid: 0x");
+   console_put_int(prog_a_pid);
+   console_put_char('\n');
+   while(1);
+   //while(1) {
+   //   console_put_str(" v_a:0x");
+   //   console_put_int(test_var_a);
+   //   console_put_str("\n");
+   //}
 }
 
 void k_thread_b(void* arg) {     
    char* para = arg;
-   while(1) {
-      console_put_str(" v_b:0x");
-      console_put_int(test_var_b);
-      console_put_str("\n");
-   }
+   console_put_str("thread_a_pid: 0x");
+   console_put_int(sys_getpid());
+   console_put_char('\n');
+   console_put_str("prog_a_pid: 0x");
+   console_put_int(prog_a_pid);
+   console_put_char('\n');
+   while(1);
+   //char* para = arg;
+   //while(1) {
+   //   console_put_str(" v_b:0x");
+   //   console_put_int(test_var_b);
+   //   console_put_str("\n");
+   //}
 }
 
 /*
@@ -96,15 +118,21 @@ void k_thread_b(void *arg)
 */
 
 void u_prog_a(void) {
-   while(1) {
-      //console_put_str("lalalalala ");
-      test_var_a++;
-   }
+   prog_a_pid = getpid();
+   while(1);
+    //while(1) {
+   //   //console_put_str("lalalalala ");
+   //   test_var_a++;
+   //}
 }
 
 void u_prog_b(void) {
-   while(1) {
-      //console_put_str("lblblblb ");
-      test_var_b++;
-   }
+   prog_a_pid = getpid();
+   while(1);
+   //while(1) {
+   //   //console_put_str("lblblblb ");
+   //   test_var_b++;
+   //}
 }
+
+
