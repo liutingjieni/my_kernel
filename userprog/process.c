@@ -16,14 +16,12 @@ extern void intr_exit(void);
 //初始化用户进程上下文信息
 void start_process(void *filename_)
 {
-    console_put_str("start_proess start\n");
+    //console_put_str("start_proess start\n");
     void *function = filename_;
     //put_int(function);
     struct task_struct *cur = running_thread();
-    put_int(cur);
     cur->self_kstack += sizeof(struct thread_stack);
     struct intr_stack *proc_stack = (struct intr_stack *)cur->self_kstack;
-    put_int(proc_stack);
     proc_stack->edi= proc_stack->esi = proc_stack->ebp = proc_stack->esp_dummy = 0;
 
     proc_stack->ebx = proc_stack->edx = proc_stack->ecx = proc_stack->eax = 0;
@@ -36,9 +34,9 @@ void start_process(void *filename_)
     //USER_STACK3_VADDR = 0xc0000000 - 0x1000, 是用户栈空间的下边界 + PG_SIZE是栈的上边界， 即栈底
     proc_stack->esp = (void *)((uint32_t)get_a_page(PF_USER, USER_STACK3_VADDR) + PG_SIZE);
     proc_stack->ss = SELECTOR_U_DATA;
-    console_put_str("start_proess\n");
+    //console_put_str("start_proess\n");
     asm volatile("movl %0, %%esp; jmp intr_exit": : "g"(proc_stack): "memory");
-    console_put_str("start_proess end\n");
+    //console_put_str("start_proess end\n");
 }
 
 //激活页表
@@ -46,7 +44,7 @@ void page_dir_activate(struct task_struct *p_thread)
 {
     uint32_t pagedir_phy_addr = 0x100000;
     if (p_thread->pgdir != NULL) {
-        put_str("pthread_dir_activate\n");
+       // put_str("pthread_dir_activate\n");
         pagedir_phy_addr = addr_v2p((uint32_t)p_thread->pgdir);
         //put_int(pagedir_phy_addr);
         //pagedir_phy_addr = ((0xfffff000) + (((uint32_t)p_thread->pgdir & 0xffc00000) >> 22) * 4);
@@ -69,9 +67,9 @@ void process_activate(struct task_struct *p_thread)
 uint32_t *create_page_dir(void)
 {
     //分配物理地址， 虚拟地址， 并完成映射
-    put_str("create_page_dir\n");
+    //put_str("create_page_dir\n");
     uint32_t *page_dir_vaddr = get_kernel_pages(1);
-    put_str("page_dir_vaddr");
+   // put_str("page_dir_vaddr");
     //put_int((uint32_t)page_dir_vaddr);
     if (page_dir_vaddr == NULL) {
         console_put_str("create_page_dir: get_kernel_page failed!");
@@ -101,9 +99,9 @@ void create_user_vaddr_bitmap(struct task_struct *user_prog)
 //创建用户进程, filename是用户进程地址, name是进程名
 void process_execute(void *filename, char *name)
 {
-    console_put_str("process_execute start\n");
+ //   console_put_str("process_execute start\n");
     struct task_struct *thread = get_kernel_pages(1);
-    //put_int(thread);
+ //   put_int(thread);
     init_thread(thread, name, default_prio);
     create_user_vaddr_bitmap(thread);
     thread_create(thread, start_process, filename);
@@ -117,5 +115,5 @@ void process_execute(void *filename, char *name)
     list_append(&thread_all_list, &thread->all_list_tag);
     intr_set_status(old_status);
 
-    console_put_str("process_execute end\n");
+   // console_put_str("process_execute end\n");
 }

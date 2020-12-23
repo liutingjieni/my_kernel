@@ -27,9 +27,8 @@ struct task_struct *running_thread()
 
 static void kernel_thread(thread_func *function, void *func_arg)
 {
-    struct task_struct *t = running_thread();
-    put_str("lalala\n");
-    //intr_enable();
+    intr_enable();
+ //   struct task_struct *t = running_thread();
     function(func_arg);
 }
 
@@ -60,7 +59,7 @@ void init_thread(struct task_struct* pthread, char *name, int prio)
     else {
         pthread->status = TASK_READY;
     }
-    pthread->status = TASK_RUNNING;
+    //pthread->status = TASK_RUNNING;
     pthread->priority = prio;
     //self_kstack是线程自己在内核状态下使用的栈顶地址
     pthread->self_kstack = (uint32_t *)((uint32_t)pthread + PG_SIZE); 

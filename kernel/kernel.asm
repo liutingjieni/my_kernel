@@ -51,10 +51,10 @@ intr_exit:
    add esp, 4			   ; 跳过中断号
    popad
    pop gs
-   ;pop fs
+   pop fs
    pop es
    pop ds
-   add esp, 8			   ; 跳过error_code
+   add esp, 4			   ; 跳过error_code
    iretd
 
 VECTOR 0x00,ZERO

@@ -106,7 +106,7 @@ static void page_table_add(void* _vaddr, void *_page_phyaddr)
     if (*pde & 0x00000001) {
         ASSERT(!(*pte & 0x00000001));
         if (!(*pte & 0x00000001)) {
-            *pte = (page_phyaddr | PG_US_U | PG_RW_R| PG_P_1);
+            *pte = (page_phyaddr | PG_US_U | PG_RW_W | PG_P_1);
         }
         else {
             PANIC("pte repeat");
@@ -119,7 +119,7 @@ static void page_table_add(void* _vaddr, void *_page_phyaddr)
 
         memset((void *)((int)pte & 0xfffff000), 0, PG_SIZE);
         ASSERT(!(*pte & 0x00000001));
-        *pte = (page_phyaddr | PG_US_U | PG_RW_R | PG_P_1);
+        *pte = (page_phyaddr | PG_US_U | PG_RW_W | PG_P_1);
     }
 }
 
@@ -153,10 +153,12 @@ void *malloc_page(enum pool_flags pf, uint32_t pg_cnt)
 
 void *get_kernel_pages(uint32_t pg_cnt)
 {
+    lock_acquire(&kernel_pool.lock);
     void *vaddr = malloc_page(PF_KERNEL, pg_cnt);
     if (vaddr != NULL) {
         memset(vaddr, 0, pg_cnt * PG_SIZE);
     }
+    lock_release(&kernel_pool.lock);
     return vaddr;
 }
 
@@ -275,7 +277,7 @@ void mem_init()
 {
     put_str("mem_init start\n");
     uint32_t mem_bytes_total = (*(uint32_t *)(0xb00));
-    put_int(mem_bytes_total);
+    //put_int(mem_bytes_total);
     mem_pool_init(mem_bytes_total);
     put_str("mem_init done\n");
 

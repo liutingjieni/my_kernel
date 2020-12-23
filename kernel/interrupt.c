@@ -13,11 +13,11 @@
 #define PIC_M_CTRL  0x20                //主片的控制端口0x20
 #define PIC_M_DATA 0x21                 //主片的数据端口0x21
 #define PIC_S_CTRL 0xa0                 //从片的控制端口0xa0
-#define PIC_S_DATA 0xal                 //从片的数据端口0xa1
+#define PIC_S_DATA 0xa1                 //从片的数据端口0xa1
 
 #define EFLAGS_IF 0x00000200
 //pushfl是将eflags寄存器的值压栈, 然后再用popl指令将其弹出到EFLAG_VAR关闭的约束中
-#define GET_EFLAGS(EFLAG_VAR) asm volatile("pushfl; popl %0;" : "=g"(EFLAG_VAR))
+#define GET_EFLAGS(EFLAG_VAR) asm volatile("pushfl; popl %0" : "=g"(EFLAG_VAR))
 
 //中断门描述符结构体
 struct gate_desc {
@@ -76,13 +76,41 @@ static void pic_init(void)
     put_str("   pic_init done\n");
 }
 
+static void general_intr_handler(uint8_t vec_nr) {
+   if (vec_nr == 0x27 || vec_nr == 0x2f) {	// 0x2f是从片8259A上的最后一个irq引脚，保留
+      return;		//IRQ7和IRQ15会产生伪中断(spurious interrupt),无须处理。
+   }
+   //将光标置为0,从屏幕左上角清出一片打印异常信息的区域,方便阅读 
+   set_cursor(0);
+   int cursor_pos = 0;
+   while(cursor_pos < 320) {
+      put_char(' ');
+      cursor_pos++;
+   }
+
+   set_cursor(0);	 // 重置光标为屏幕左上角
+   put_str("!!!!!!!      excetion message begin  !!!!!!!!\n");
+   set_cursor(88);	// 从第2行第8个字符开始打印
+   put_str(intr_name[vec_nr]);
+   if (vec_nr == 14) {	  // 若为Pagefault,将缺失的地址打印出来并悬停
+      int page_fault_vaddr = 0; 
+      asm ("movl %%cr2, %0" : "=r" (page_fault_vaddr));	  // cr2是存放造成page_fault的地址
+      put_str("\npage fault addr is ");put_int(page_fault_vaddr); 
+   }
+   put_str("\n!!!!!!!      excetion message end    !!!!!!!!\n");
+  // 能进入中断处理程序就表示已经处在关中断情况下,
+  // 不会出现调度进程的情况。故下面的死循环不会再被中断。
+   while(1);
+}
+
+/*
 static void general_intr_handler(uint8_t vec_nr)
 {
     if (vec_nr == 0x27 || vec_nr == 0x2f) {
         return;
     }
 
-    put_str("!!!!!!!! exction message begin !!!!!!!!!!!");
+    //put_str("!!!!!!!! exction message begin !!!!!!!!!!!");
     //put_int(vec_nr);
    // set_cursor(0);
    // int cursor_pos = 0;
@@ -94,7 +122,6 @@ static void general_intr_handler(uint8_t vec_nr)
    // set_cursor(0);
    // put_str("!!!!!!!! exction message begin !!!!!!!!!!!\n");
    // set_cursor(88);
-     put_str(intr_name[vec_nr]);
     if (vec_nr == 14) {
         int page_fault_vaddr = 0;
         asm ("movl %%cr2, %0" : "=r"(page_fault_vaddr));
@@ -104,11 +131,11 @@ static void general_intr_handler(uint8_t vec_nr)
     }
    // put_str("\n!!!!!!!! exction message end !!xx");
     //while(1);
-}
+}*/
 
 static void exception_init(void)
 {
-    put_str("exception_init\n");
+    //put_str("exception_init\n");
     int i;
     for (i = 0; i < IDT_DESC_CNT; i++) {
         idt_table[i] = general_intr_handler;
@@ -145,7 +172,7 @@ void idt_init()
     pic_init();                  //初始化8259A
 
     //加载idt
-    uint64_t idt_operand = ((sizeof(idt) - 1) | ((uint64_t)((uint32_t)idt << 16)));
+    uint64_t idt_operand = ((sizeof(idt) - 1) | ((uint64_t)(uint32_t)idt << 16));
     asm volatile("lidt %0": : "m"(idt_operand));
     put_str("idt_init done\n");
 }
