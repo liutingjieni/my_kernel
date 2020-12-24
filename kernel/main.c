@@ -120,7 +120,9 @@ void k_thread_b(void *arg)
 
 void u_prog_a(void) {
    //prog_a_pid = getpid();
-    printf("prog_a_pid:0x%x\n", getpid());
+   char *name = "prog_a";
+   printf(" I am %s, my pid: %d%c", name, getpid(), '\n');
+   // printf("prog_a_pid:0x%x\n", getpid());
     while(1);
     //while(1) {
    //   //console_put_str("lalalalala ");
@@ -129,7 +131,9 @@ void u_prog_a(void) {
 }
 
 void u_prog_b(void) {
-    printf("prog_b_pid:0x%x\n", getpid());
+   char *name = "prog_a";
+   printf(" I am %s, my pid: %d%c", name, getpid(), '\n');
+   // printf("prog_b_pid:0x%x\n", getpid());
    //prog_a_pid = getpid();
    while(1);
    //while(1) {
