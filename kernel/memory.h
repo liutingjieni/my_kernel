@@ -11,6 +11,9 @@
 #include "bitmap.h"
 #include "debug.h"
 #include "string.h"
+#include "list.h"
+#include "global.h"
+#include "interrupt.h"
 
 struct virtual_addr {
     struct bitmap vaddr_bitmap;     //虚拟地址用到的位图结构
@@ -35,8 +38,22 @@ enum pool_flags {
 #define PG_US_S 0                  //系统位
 #define PG_US_U 4                  //用户位
 
+struct mem_block {
+    struct list_elem free_elem;
+};
+
+struct mem_block_desc {
+    uint32_t block_size;
+    uint32_t blocks_per_arena;
+    struct list free_list;
+};
+
+#define DESC_CNT 7
+
 void *get_kernel_pages(uint32_t);
 
 uint32_t addr_v2p(uint32_t vaddr);
 void *get_a_page(enum pool_flags pf, uint32_t vaddr);
+void block_desc_init(struct mem_block_desc *desc_array);
+void *sys_malloc(uint32_t size);
 #endif
