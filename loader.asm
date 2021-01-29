@@ -28,7 +28,7 @@ SELECTOR_CODE equ (0x0001 << 3) + TI_GDT + RPL0
 SELECTOR_DATA equ (0x0002 << 3) + TI_GDT + RPL0
 SELECTOR_VIDEO equ (0x0003 << 3) + TI_GDT + RPL0
 
-total_mem_bytes dd 0 ;当前内存地址0xb03
+total_mem_bytes dd 0 ;当前内存地址0xb00
 
 gdt_ptr dw GDT_LIMIT 
         dd GDT_BASE
